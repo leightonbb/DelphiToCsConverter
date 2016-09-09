@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using System.IO;
+using System.Reflection;
 
 namespace DelphiToCsConverter.Tests
 {
@@ -89,6 +91,29 @@ namespace Unit2
     {
     }
 }"
+);
+        }
+        string ReadResourceText(string resourceName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var names = assembly.GetManifestResourceNames();
+
+            using (Stream stream = assembly.GetManifestResourceStream(this.GetType(), resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
+        }
+        [TestMethod]
+        [Ignore] // Unfinished. Does not read comments in yet.
+        public void Call_Convert_WhenFullClass()
+        {
+            string delphiCode = ReadResourceText("DelphiExamples.TForm1Unit.pas");
+            TestConversion(delphiCode,
+
+@"
+// Full Unit code."
 );
         }
     }

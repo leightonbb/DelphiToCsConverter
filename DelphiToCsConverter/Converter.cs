@@ -18,8 +18,15 @@ namespace DelphiToCsConverter
         {
             if (delphiCode.Contains("class"))
             {
+#if NEVER
+                // Parse without filtering out comment tokens...
+                Lexer lexer = new Lexer(delphiCode, "input");
+                Parser parser = Parser.FromTokens(lexer.Tokens);
+#endif
+
                 Parser parser = Parser.FromText(delphiCode, "input", CompilerDefines.CreateStandard(),
                     new MemoryFileLoader());
+
                 AstNode tree = parser.ParseRule(RuleType.Unit);
                 //var Text = tree.Inspect();
 
