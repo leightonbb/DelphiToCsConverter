@@ -70,6 +70,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DelphiExamples\TForm1Unit.pas" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>
