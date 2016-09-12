@@ -17,20 +17,28 @@ unit Unit1;
 
 interface
 
+type TForm1 = Class(TObject)
+    procedure Button1Click(Sender: TObject);
+end;
+
 implementation
 
 procedure TForm1.Button1Click(Sender: TObject);
     begin
     end; 
+
+
+end.
 ",
 
 @"
-class TForm1
-{
-    void Button1Click(Sender: TObject)
+    public class TForm1
     {
+        
+        private void Button1Click(object Sender)
+        {
+        }
     }
-};
 ");
         }
         [TestMethod]
